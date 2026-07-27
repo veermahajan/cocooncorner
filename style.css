@@ -420,6 +420,7 @@ footer .foot-small {
 .stat-img.logo-snp   { height: 48px; max-width: 48px; }
 .stat-img.logo-sm    { height: 36px; max-width: 120px; }
 .stat-img.logo-cboe  { height: 48px; max-width: 48px; }
+.stat-img.logo-fusd  { height: 48px; max-width: 140px; }
 
 /* ── Mission section ── */
 .mission-section {
@@ -826,6 +827,7 @@ details[open] summary::after { content: '\2212'; }
   .stat-img.logo-sm   { height: 30px; }
   .stat-img.logo-snp  { height: 38px; max-width: 38px; }
   .stat-img.logo-cboe { height: 38px; max-width: 38px; }
+  .stat-img.logo-fusd { height: 40px; max-width: 120px; }
 
   .progress-boxes { grid-template-columns: 1fr; }
   .prog-num { font-size: 1.6rem; }

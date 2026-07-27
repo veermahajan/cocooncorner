@@ -9,31 +9,35 @@
   <link rel="stylesheet" href="../style.css">
   <style>
     .member-grid-2027 {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      display: flex;
+      flex-direction: column;
       gap: 1.5rem;
-      max-width: 960px;
+      max-width: 820px;
       margin: 0 auto 3rem;
     }
 
     .member-card-2027 {
       background: var(--white);
       border: 1px solid var(--line);
-      padding: 1.6rem 1.4rem;
-      text-align: center;
+      padding: 1.4rem;
       display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 1.4rem;
     }
 
     .m-photo {
-      width: 88px;
-      height: 88px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       object-fit: cover;
-      margin: 0 auto 0.7rem;
       display: block;
       border: 1px solid var(--line);
+      flex-shrink: 0;
+    }
+
+    .member-card-2027 .member-info {
+      text-align: left;
     }
 
     .member-card-2027 h3 {
@@ -62,7 +66,10 @@
     }
 
     @media (max-width: 600px) {
-      .member-grid-2027 { grid-template-columns: 1fr; }
+      .member-card-2027 { flex-direction: column; align-items: center; text-align: center; }
+      .member-card-2027 .member-info { text-align: center; }
+      .member-card-2027 .bio { text-align: left; }
+      .m-photo { margin: 0 auto; }
     }
   </style>
 </head>
@@ -108,65 +115,83 @@
 
       <div class="member-card-2027">
         <img class="m-photo" src="../assets/gautham.png" alt="Gautham Ramkumar">
+        <div class="member-info">
         <h3>Gautham Ramkumar</h3>
         <div class="role-title">Co-Founder &amp; Executive Director, Institutional Strategy</div>
         <p class="bio">Gautham Ramkumar is a youth advocate and researcher specializing in neuro-inclusive education and community accessibility. As a student at Mission San Jose High School, he serves as a Kindness Ambassador for the Magical Bridge Foundation and is a co-founder of Cocoon Corner, where he works to integrate neurodiversity education into public schools. His diverse advocacy portfolio includes work at NeuroGuidance and affordable housing initiatives for Rebuild the Bay, as well as collaborations with the Stanford Neurodiversity Project and Friends of Children with Special Needs (FCSN). Outside of his advocacy work, Gautham enjoys backpacking, walking his dog Suki, and studying Biology.</p>
+        </div>
       </div>
 
       <div class="member-card-2027">
         <img class="m-photo" src="../assets/tallulah.png" alt="Tallulah Turner">
+        <div class="member-info">
         <h3>Tallulah Turner</h3>
         <div class="role-title">Co-Founder &amp; Executive Director, Curriculum &amp; Book Design</div>
         <p class="bio">Tallulah is a rising junior at Castilleja High School, and this is her fifth year engaging in neurodiversity advocacy. At Cocoon Corner, she has written several children's books and is so excited to watch the team expand and take on new projects. Outside of advocacy work, she loves to run and spend time with her friends.</p>
+        </div>
       </div>
 
       <div class="member-card-2027">
         <img class="m-photo" src="../assets/camila.png" alt="Camila Gonzalez">
+        <div class="member-info">
         <h3>Camila Gonzalez</h3>
         <div class="role-title">Co-founder, Former Lead Illustrator</div>
         <p class="bio">Camila is a co-founder and has served as the lead illustrator for Clover the Caterpillar. She loves exploring all kinds of art in her free time.</p>
+        </div>
       </div>
 
       <div class="member-card-2027">
         <img class="m-photo" src="../assets/veer.png" alt="Veer Mahajan">
+        <div class="member-info">
         <h3>Veer Mahajan</h3>
         <div class="role-title">Community Coordinator, Educational Programs &amp; Technology</div>
         <p class="bio">Veer Mahajan, a Bay Area high schooler, developed an interest in neurodiversity through tutoring. Engaging with hundreds of students globally through Schoolhouse and SMOA, he deeply values the unique perspectives neurodiversity brings. At school, Veer serves as Co-President of the peer tutoring organization STEM Success and leads the Predictive Modeling and AI Clubs. He also enjoys competition math, learning languages, and playing badminton.</p>
+        </div>
       </div>
 
       <div class="member-card-2027">
         <img class="m-photo" src="../assets/scarlett.jpg" alt="Scarlett Huang">
+        <div class="member-info">
         <h3>Scarlett Huang</h3>
         <div class="role-title">Community Coordinator, Educational Programs &amp; Editorial Content</div>
         <p class="bio">My name is Scarlett Huang, and I'm a rising senior at Mission San Jose High School. I recently joined Cocoon Corner in hopes that my work will help increase awareness and inclusion for student communities everywhere. Beyond Cocoon Corner, I'm also a journalist and published creative writer who loves all things art-related.</p>
+        </div>
       </div>
 
       <div class="member-card-2027">
         <img class="m-photo" src="../assets/oriana.png" alt="Oriana Deng">
+        <div class="member-info">
         <h3>Oriana Deng</h3>
         <div class="role-title">Co-Founder &amp; Community Coordinator, Media &amp; Outreach</div>
         <p class="bio">Hi I'm Oriana! I'm currently a junior at Miramonte High School. I am a part of the social media outreach and creative design team. Outside of school and work, I enjoy going on walks and listening to music.</p>
+        </div>
       </div>
 
       <div class="member-card-2027">
         <img class="m-photo" src="../assets/amritha.jpg" alt="Amritha Pallamreddy">
+        <div class="member-info">
         <h3>Amritha Pallamreddy</h3>
         <div class="role-title">Community Coordinator, Educational Programs &amp; Art</div>
         <p class="bio">Amritha is a high school student with interests in community service, healthcare advocacy, and art. She is passionate about helping others, supporting her community, and exploring creative expression through artistic work. Through her involvement in service and advocacy, she hopes to make a positive impact in the healthcare industry</p>
+        </div>
       </div>
 
       <div class="member-card-2027">
         <img class="m-photo" src="../assets/isabella.jpg" alt="Isabella Wu">
+        <div class="member-info">
         <h3>Isabella Wu</h3>
         <div class="role-title">Community Coordinator, Educational Programs</div>
         <p class="bio">Isabella is deeply committed to advancing UDL (universal design for learning) and integrating inclusive teaching practices into modern education through art and design. Her interests include neuroscience, product design, and chemistry. She aims to develop tools and curricula that honor diverse learning styles and foster equitable opportunities for all students.</p>
+        </div>
       </div>
 
       <div class="member-card-2027">
         <img class="m-photo" src="../assets/joseph.png" alt="Joseph Ma">
+        <div class="member-info">
         <h3>Joseph Ma</h3>
         <div class="role-title">Co-Founder &amp; Community Coordinator, Educational Programs</div>
         <p class="bio">Hi, my name is Joseph. I am from the Bay Area, a high school grad heading to college to study Cognitive Science. Passionate about community impact, books, water polo, and exploring new places.</p>
+        </div>
       </div>
 
     </div>
