@@ -18,32 +18,26 @@
 
     .member-card-2027 {
       background: var(--white);
-      border-radius: var(--radius-lg);
-      padding: 1.8rem 1.5rem;
+      border: 1px solid var(--line);
+      padding: 1.6rem 1.4rem;
       text-align: center;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.28s;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
     }
-    .member-card-2027:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-    }
 
     .m-photo {
-      width: 100px;
-      height: 100px;
+      width: 88px;
+      height: 88px;
       border-radius: 50%;
       object-fit: cover;
       margin: 0 auto 0.7rem;
       display: block;
-      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--line);
     }
 
     .member-card-2027 h3 {
-      font-family: 'Fraunces', serif;
+      font-family: var(--font-heading);
       font-weight: 700;
       font-size: 1.05rem;
       color: var(--text);
@@ -52,10 +46,10 @@
 
     .member-card-2027 .role-title {
       font-size: 0.78rem;
-      font-weight: 800;
-      color: var(--orange);
+      font-weight: 700;
+      color: var(--text-soft);
       text-transform: uppercase;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.6px;
       line-height: 1.3;
     }
 
@@ -65,33 +59,6 @@
       line-height: 1.6;
       margin-top: 0.4rem;
       text-align: left;
-    }
-
-    .team-photo-placeholder {
-      max-width: 900px;
-      margin: 0 auto 3rem;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      position: relative;
-      background: var(--green-light);
-      border: 3px dashed var(--green);
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.8rem;
-    }
-    .team-photo-placeholder .ph-emoji { font-size: 3rem; }
-    .team-photo-placeholder .ph-text {
-      font-weight: 800;
-      font-size: 1rem;
-      color: var(--green);
-    }
-    .team-photo-placeholder .ph-sub {
-      font-size: 0.85rem;
-      color: var(--text-soft);
     }
 
     @media (max-width: 600px) {
@@ -110,7 +77,7 @@
   <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
   <ul id="nav-links">
     <li><a href="../"                class="nl" data-page="home">Home</a></li>
-    <li><a href="../curricula/"      class="nl curricula-special" data-page="curricula">🎉 Curricula</a></li>
+    <li><a href="../curricula/"      class="nl" data-page="curricula">Curricula</a></li>
     <li><a href="../book/"           class="nl" data-page="book">Our Book</a></li>
     <li><a href="../team/"           class="nl" data-page="team">Team</a></li>
     <li><a href="../resources/"      class="nl" data-page="resources">Resources</a></li>
@@ -130,14 +97,14 @@
   <!-- ═══════ TEAM CONTENT ═══════ -->
   <section class="content-section">
 
-    <!-- Group photo placeholder -->
-<div class="team-photo-wrap reveal">
+    <!-- Group photo -->
+<div class="team-photo-wrap">
   <img src="../assets/team.jpg" alt="The Cocoon Corner team at Stanford University">
-  <div class="team-photo-caption">The Cocoon Corner 2026–2027 team at Stanford University 🎓</div>
+  <div class="team-photo-caption">The Cocoon Corner 2026–2027 team at Stanford University</div>
 </div>
 
     <!-- Member cards -->
-    <div class="member-grid-2027 reveal">
+    <div class="member-grid-2027">
 
       <div class="member-card-2027">
         <img class="m-photo" src="../assets/gautham.png" alt="Gautham Ramkumar">
@@ -205,9 +172,9 @@
     </div>
 
     <!-- Contact -->
-    <div class="contact-bar reveal">
-      <a href="mailto:cocooncorners@gmail.com">✉️ cocooncorners@gmail.com</a>
-      <a href="https://www.instagram.com/cocoon_corners/" target="_blank" rel="noopener">📸 @cocoon_corners</a>
+    <div class="contact-bar">
+      <a href="mailto:cocooncorners@gmail.com">cocooncorners@gmail.com</a>
+      <a href="https://www.instagram.com/cocoon_corners/" target="_blank" rel="noopener">@cocoon_corners</a>
     </div>
 
   </section>
@@ -215,7 +182,7 @@
 
 <!-- ═══════ FOOTER ═══════ -->
 <footer>
-  <div class="foot-logo">🦋 Cocoon Corner</div>
+  <div class="foot-logo">Cocoon Corner</div>
   <p>A Stanford Neurodiversity Project Initiative</p>
   <p style="margin-top: 0.8rem;">
     <a href="mailto:cocooncorners@gmail.com">cocooncorners@gmail.com</a> &nbsp;·&nbsp;
@@ -239,10 +206,6 @@
       btn.textContent = open ? '✕' : '☰';
     });
   }
-  var obs = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
 })();
 </script>
 </body>
