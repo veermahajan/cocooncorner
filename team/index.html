@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team | Cocoon Corner</title>
+  <link rel="icon" type="image/png" href="../assets/logo.png">
+  <link rel="apple-touch-icon" href="../assets/logo.png">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .member-grid-2027 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 960px;
+      margin: 0 auto 3rem;
+    }
+
+    .member-card-2027 {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.28s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .member-card-2027:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .m-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 0.7rem;
+      display: block;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .member-card-2027 h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .member-card-2027 .role-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      line-height: 1.3;
+    }
+
+    .member-card-2027 .bio {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+      margin-top: 0.4rem;
+      text-align: left;
+    }
+
+    .team-photo-placeholder {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      background: var(--green-light);
+      border: 3px dashed var(--green);
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+    .team-photo-placeholder .ph-emoji { font-size: 3rem; }
+    .team-photo-placeholder .ph-text {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--green);
+    }
+    .team-photo-placeholder .ph-sub {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+    }
+
+    @media (max-width: 600px) {
+      .member-grid-2027 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-page="team">
+
+<!-- ═══════ NAVIGATION ═══════ -->
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="../assets/logo.png" alt="Cocoon Corner logo">
+    Cocoon Corner
+  </a>
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  <ul id="nav-links">
+    <li><a href="../"                class="nl" data-page="home">Home</a></li>
+    <li><a href="../curricula/"      class="nl curricula-special" data-page="curricula">🎉 Curricula</a></li>
+    <li><a href="../book/"           class="nl" data-page="book">Our Book</a></li>
+    <li><a href="../team/"           class="nl" data-page="team">Team</a></li>
+    <li><a href="../resources/"      class="nl" data-page="resources">Resources</a></li>
+    <li><a href="../sensory-spaces/" class="nl" data-page="sensory-spaces">Sensory Spaces</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- ═══════ PAGE HERO ═══════ -->
+  <div class="page-hero page-hero--team">
+    <span class="eyebrow">2026–2027</span>
+    <h1 class="page-title">Our <span>Team</span></h1>
+    <p class="page-subtitle">Passionate students from the Stanford Neurodiversity Project building a more inclusive world for kids.</p>
+  </div>
+
+  <!-- ═══════ TEAM CONTENT ═══════ -->
+  <section class="content-section">
+
+    <!-- Group photo placeholder -->
+<div class="team-photo-wrap reveal">
+  <img src="../assets/team.jpg" alt="The Cocoon Corner team at Stanford University">
+  <div class="team-photo-caption">The Cocoon Corner 2026–2027 team at Stanford University 🎓</div>
+</div>
+
+    <!-- Member cards -->
+    <div class="member-grid-2027 reveal">
+
+      <div class="member-card-2027">
+        <img class="m-photo" src="../assets/gautham.png" alt="Gautham Ramkumar">
+        <h3>Gautham Ramkumar</h3>
+        <div class="role-title">Co-Founder &amp; Executive Director, Institutional Strategy</div>
+        <p class="bio">Gautham Ramkumar is a youth advocate and researcher specializing in neuro-inclusive education and community accessibility. As a student at Mission San Jose High School, he serves as a Kindness Ambassador for the Magical Bridge Foundation and is a co-founder of Cocoon Corner, where he works to integrate neurodiversity education into public schools. His diverse advocacy portfolio includes work at NeuroGuidance and affordable housing initiatives for Rebuild the Bay, as well as collaborations with the Stanford Neurodiversity Project and Friends of Children with Special Needs (FCSN). Outside of his advocacy work, Gautham enjoys backpacking, walking his dog Suki, and studying Biology.</p>
+      </div>
+
+      <div class="member-card-2027">
+        <img class="m-photo" src="../assets/tallulah.png" alt="Tallulah Turner">
+        <h3>Tallulah Turner</h3>
+        <div class="role-title">Co-Founder &amp; Executive Director, Curriculum &amp; Book Design</div>
+        <p class="bio">Tallulah is a rising junior at Castilleja High School, and this is her fifth year engaging in neurodiversity advocacy. At Cocoon Corner, she has written several children's books and is so excited to watch the team expand and take on new projects. Outside of advocacy work, she loves to run and spend time with her friends.</p>
+      </div>
+
+      <div class="member-card-2027">
+        <img class="m-photo" src="../assets/camila.png" alt="Camila Gonzalez">
+        <h3>Camila Gonzalez</h3>
+        <div class="role-title">Co-founder, Former Lead Illustrator</div>
+        <p class="bio">Camila is a co-founder and has served as the lead illustrator for Clover the Caterpillar. She loves exploring all kinds of art in her free time.</p>
+      </div>
+
+      <div class="member-card-2027">
+        <img class="m-photo" src="../assets/veer.png" alt="Veer Mahajan">
+        <h3>Veer Mahajan</h3>
+        <div class="role-title">Community Coordinator, Educational Programs &amp; Technology</div>
+        <p class="bio">Veer Mahajan, a Bay Area high schooler, developed an interest in neurodiversity through tutoring. Engaging with hundreds of students globally through Schoolhouse and SMOA, he deeply values the unique perspectives neurodiversity brings. At school, Veer serves as Co-President of the peer tutoring organization STEM Success and leads the Predictive Modeling and AI Clubs. He also enjoys competition math, learning languages, and playing badminton.</p>
+      </div>
+
+      <div class="member-card-2027">
+        <img class="m-photo" src="../assets/scarlett.jpg" alt="Scarlett Huang">
+        <h3>Scarlett Huang</h3>
+        <div class="role-title">Community Coordinator, Educational Programs &amp; Editorial Content</div>
+        <p class="bio">My name is Scarlett Huang, and I'm a rising senior at Mission San Jose High School. I recently joined Cocoon Corner in hopes that my work will help increase awareness and inclusion for student communities everywhere. Beyond Cocoon Corner, I'm also a journalist and published creative writer who loves all things art-related.</p>
+      </div>
+
+      <div class="member-card-2027">
+        <img class="m-photo" src="../assets/oriana.png" alt="Oriana Deng">
+        <h3>Oriana Deng</h3>
+        <div class="role-title">Co-Founder &amp; Community Coordinator, Media &amp; Outreach</div>
+        <p class="bio">Hi I'm Oriana! I'm currently a junior at Miramonte High School. I am a part of the social media outreach and creative design team. Outside of school and work, I enjoy going on walks and listening to music.</p>
+      </div>
+
+      <div class="member-card-2027">
+        <img class="m-photo" src="../assets/amritha.jpg" alt="Amritha Pallamreddy">
+        <h3>Amritha Pallamreddy</h3>
+        <div class="role-title">Community Coordinator, Educational Programs &amp; Art</div>
+        <p class="bio">Amritha is a high school student with interests in community service, healthcare advocacy, and art. She is passionate about helping others, supporting her community, and exploring creative expression through artistic work. Through her involvement in service and advocacy, she hopes to make a positive impact in the healthcare industry</p>
+      </div>
+
+      <div class="member-card-2027">
+        <img class="m-photo" src="../assets/isabella.jpg" alt="Isabella Wu">
+        <h3>Isabella Wu</h3>
+        <div class="role-title">Community Coordinator, Educational Programs</div>
+        <p class="bio">Isabella is deeply committed to advancing UDL (universal design for learning) and integrating inclusive teaching practices into modern education through art and design. Her interests include neuroscience, product design, and chemistry. She aims to develop tools and curricula that honor diverse learning styles and foster equitable opportunities for all students.</p>
+      </div>
+
+      <div class="member-card-2027">
+        <img class="m-photo" src="../assets/joseph.png" alt="Joseph Ma">
+        <h3>Joseph Ma</h3>
+        <div class="role-title">Co-Founder &amp; Community Coordinator, Educational Programs</div>
+        <p class="bio">Hi, my name is Joseph. I am from the Bay Area, a high school grad heading to college to study Cognitive Science. Passionate about community impact, books, water polo, and exploring new places.</p>
+      </div>
+
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-bar reveal">
+      <a href="mailto:cocooncorners@gmail.com">✉️ cocooncorners@gmail.com</a>
+      <a href="https://www.instagram.com/cocoon_corners/" target="_blank" rel="noopener">📸 @cocoon_corners</a>
+    </div>
+
+  </section>
+</div><!-- /page-wrap -->
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="foot-logo">🦋 Cocoon Corner</div>
+  <p>A Stanford Neurodiversity Project Initiative</p>
+  <p style="margin-top: 0.8rem;">
+    <a href="mailto:cocooncorners@gmail.com">cocooncorners@gmail.com</a> &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/cocoon_corners/" target="_blank" rel="noopener">@cocoon_corners</a>
+  </p>
+  <p class="foot-small">Illustrations by Camila Gonzalez · Built for every kind of mind.</p>
+</footer>
+
+<script>
+(function () {
+  var page = document.body.dataset.page || '';
+  document.querySelectorAll('nav a.nl').forEach(function (a) {
+    if (a.dataset.page === page) a.classList.add('active');
+  });
+  var btn   = document.querySelector('.nav-toggle');
+  var links = document.getElementById('nav-links');
+  if (btn && links) {
+    btn.addEventListener('click', function () {
+      var open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+      btn.textContent = open ? '✕' : '☰';
+    });
+  }
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+})();
+</script>
+</body>
+</html>
