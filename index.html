@@ -8,6 +8,29 @@
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/logo.png">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Primary offering card in the mission grid */
+    .card--feature {
+      background: var(--green-light);
+      border: 2px solid var(--accent);
+    }
+
+    .card--feature .feature-flag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--accent);
+      padding: 0.25rem 0.55rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .card--feature h3 { color: var(--accent-dark); }
+
+    .card--feature .pill-btn { font-size: 1rem; }
+  </style>
 </head>
 <body data-page="home">
 
@@ -101,12 +124,13 @@
           </p>
           <a href="sensory-spaces/" class="pill-btn outline" style="margin-top: 1rem;">Learn more</a>
         </div>
-        <div class="card">
-          <h3 style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.4rem;">Curricula &amp; Guides</h3>
+        <div class="card card--feature">
+          <span class="feature-flag">Our core work</span>
+          <h3 style="font-weight: 700; font-size: 1.25rem; margin-bottom: 0.4rem;">Curricula &amp; Guides</h3>
           <p style="color: var(--text-soft); font-size: 0.9rem;">
             Free lesson plans, worksheets, and DIY sensory space guides for teachers &amp; librarians.
           </p>
-          <a href="curricula/" class="pill-btn outline" style="margin-top: 1rem;">Learn more</a>
+          <a href="curricula/" class="pill-btn" style="margin-top: 1rem;">Learn more</a>
         </div>
       </div>
     </div>
