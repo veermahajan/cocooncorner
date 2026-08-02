@@ -912,3 +912,121 @@ details[open] summary::after { content: '\2212'; }
 
   details summary { flex-direction: column; align-items: flex-start; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   DYSLEXIA-FRIENDLY MODE
+   Toggled by dyslexia-mode.js, which puts .dyslexia on <html>.
+   Choices follow the British Dyslexia Association style guide:
+   sans-serif throughout, larger text, generous letter/word/line
+   spacing, an off-white background to cut glare, bold instead of
+   italics, and sentence case instead of all-caps.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* the control is useless without JS, so only show it once JS runs */
+.dyslexia-toggle { display: none; }
+html.js .dyslexia-toggle { display: inline-flex; }
+
+.dyslexia-toggle {
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 0.35rem 0.7rem;
+  color: var(--text-soft);
+  background: none;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dyslexia-toggle:hover {
+  color: var(--text);
+  border-color: var(--text-soft);
+}
+
+.dyslexia-toggle .toggle-mark {
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.dyslexia-toggle[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+/* ── the mode itself ─────────────────────────────────────────── */
+html.dyslexia {
+  font-size: 18px;
+
+  /* headings drop Georgia; Verdana/Tahoma have wide, open letterforms */
+  --font-heading: Verdana, Tahoma, "Trebuchet MS", Arial, sans-serif;
+  --font-body:    Verdana, Tahoma, "Trebuchet MS", Arial, sans-serif;
+
+  /* warm off-white instead of pure white, which glares */
+  --white:   #fbf7f0;
+  --cream:   #fbf7f0;
+  --bg-soft: #f3ece0;
+  --line:    #cdc5b8;
+
+  /* dark warm grey rather than near-black */
+  --text:      #2b2620;
+  --text-soft: #4a443c;
+}
+
+html.dyslexia body {
+  line-height: 1.9;
+  letter-spacing: 0.05em;
+  word-spacing: 0.16em;
+}
+
+/* italics are harder to decode — use weight for emphasis instead */
+html.dyslexia em,
+html.dyslexia i {
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* all-caps removes word-shape cues */
+html.dyslexia .eyebrow,
+html.dyslexia .section-label,
+html.dyslexia .role-title,
+html.dyslexia .feature-flag,
+html.dyslexia .grade-badge,
+html.dyslexia .condition-list,
+html.dyslexia .partner-label {
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+/* long measures are hard to track back to the next line */
+html.dyslexia .bio,
+html.dyslexia .mission-intro,
+html.dyslexia .usage-notice p {
+  max-width: 66ch;
+}
+
+/* keep focus obvious for keyboard users in this mode */
+html.dyslexia a:focus-visible,
+html.dyslexia button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Between the hamburger breakpoint and 900px the nav is tight — in
+   dyslexia mode the larger type plus this button overflowed the bar.
+   Collapse to just "Aa" there, but keep the label for screen readers. */
+@media (min-width: 761px) and (max-width: 900px) {
+  .dyslexia-toggle .toggle-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .dyslexia-toggle { padding: 0.35rem 0.5rem; }
+}
