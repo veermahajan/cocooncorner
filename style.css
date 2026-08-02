@@ -133,14 +133,14 @@ nav ul {
   align-items: center;
 }
 
-nav a.nl {
+nav .nl {
   text-decoration: none; font-weight: 600; font-size: 0.9rem;
   padding: 0.5rem 0.8rem;
   color: var(--text-soft);
   border-bottom: 2px solid transparent;
 }
-nav a.nl:hover,
-nav a.nl.active {
+nav .nl:hover,
+nav .nl.active {
   color: var(--text);
   border-bottom-color: var(--accent);
 }
@@ -158,6 +158,57 @@ nav a.nl.active {
    ═══════════════════════════════════════════════════════════════ */
 .page-wrap {
   min-height: 100vh;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV DROPDOWN GROUP (CSS-only — no JS, so the CSP script hash
+   stays valid). Desktop: reveal on hover/focus. Mobile: the
+   sub-items sit inline inside the open hamburger menu.
+   ═══════════════════════════════════════════════════════════════ */
+.nav-group {
+  position: relative;
+  padding: 0.85rem 0;
+  margin: -0.85rem 0;
+}
+
+.nav-group-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: default;
+  user-select: none;
+}
+
+.nav-group-label .caret { font-size: 0.7em; line-height: 1; }
+
+.nav-submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 190px;
+  flex-direction: column;
+  gap: 0;
+  padding: 0.35rem 0;
+  background: var(--white);
+  border: 1px solid var(--line);
+  z-index: 1000;
+}
+
+.nav-group:hover > .nav-submenu,
+.nav-group:focus-within > .nav-submenu { display: flex; }
+
+.nav-submenu .nl {
+  display: block;
+  padding: 0.5rem 0.9rem;
+  white-space: nowrap;
+}
+
+/* parent shows the active state when one of its children is current */
+.nav-group:has(.nl.active) > .nav-group-label {
+  color: var(--text);
+  border-bottom-color: var(--accent);
 }
 
 
@@ -750,7 +801,7 @@ details[open] summary::after { content: '\2212'; }
    18. RESPONSIVE — MOBILE BREAKPOINTS
    ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
-  nav a.nl { padding: 0.45rem 0.6rem; font-size: 0.85rem; }
+  nav .nl { padding: 0.45rem 0.6rem; font-size: 0.85rem; }
 }
 
 @media (max-width: 760px) {
@@ -772,7 +823,28 @@ details[open] summary::after { content: '\2212'; }
   }
   nav ul.open { display: flex; }
 
-  nav a.nl {
+  .nav-group { padding: 0; margin: 0; }
+  .nav-group-label .caret { display: none; }
+  /* not tappable on mobile (children are already listed) — read as a heading */
+  .nav-group-label {
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    opacity: 0.7;
+    padding-bottom: 0.1rem;
+  }
+  .nav-group:has(.nl.active) > .nav-group-label { border-bottom-color: transparent; }
+  .nav-submenu {
+    display: flex;
+    position: static;
+    min-width: 0;
+    background: none;
+    border: none;
+    padding: 0 0 0 1rem;
+  }
+
+  nav .nl {
     padding: 0.55rem 0.2rem;
     font-size: 0.9rem;
   }

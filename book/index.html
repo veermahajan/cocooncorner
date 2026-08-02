@@ -19,12 +19,17 @@
   </a>
   <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
   <ul id="nav-links">
-    <li><a href="../"                class="nl" data-page="home">Home</a></li>
-    <li><a href="../curricula/"      class="nl" data-page="curricula">Curricula</a></li>
-    <li><a href="../book/"           class="nl" data-page="book">Our Book</a></li>
-    <li><a href="../team/"           class="nl" data-page="team">Team</a></li>
-    <li><a href="../resources/"      class="nl" data-page="resources">Resources</a></li>
-    <li><a href="../sensory-spaces/" class="nl" data-page="sensory-spaces">Sensory Spaces</a></li>
+    <li><a href="../" class="nl" data-page="home">Home</a></li>
+    <li><a href="../curricula/" class="nl" data-page="curricula">Curricula</a></li>
+    <li class="nav-group">
+      <span class="nl nav-group-label" tabindex="0" aria-haspopup="true">Resources <span class="caret" aria-hidden="true">&#9662;</span></span>
+      <ul class="nav-submenu">
+        <li><a href="../book/" class="nl" data-page="book">Our Book</a></li>
+        <li><a href="../resources/" class="nl" data-page="resources">Downloads</a></li>
+        <li><a href="../sensory-spaces/" class="nl" data-page="sensory-spaces">Sensory Spaces</a></li>
+      </ul>
+    </li>
+    <li><a href="../team/" class="nl" data-page="team">Team</a></li>
   </ul>
 </nav>
 
