@@ -8,12 +8,13 @@
   <link rel="icon" type="image/png" href="../assets/favicon.png">
   <link rel="apple-touch-icon" href="../assets/logo.png">
   <link rel="stylesheet" href="../style.css">
-  <script src="/dyslexia-mode.js"></script>
+  <script src="/site.js"></script>
 </head>
 <body data-page="book">
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- ═══════ NAVIGATION ═══════ -->
-<nav>
+<nav aria-label="Main">
   <a href="/" class="nav-logo">
     <img src="../assets/logo.png" alt="Cocoon Corner logo">
     Cocoon Corner
@@ -23,8 +24,8 @@
     <li><a href="../" class="nl" data-page="home">Home</a></li>
     <li><a href="../curricula/" class="nl" data-page="curricula">Curricula</a></li>
     <li class="nav-group">
-      <span class="nl nav-group-label" tabindex="0" aria-haspopup="true">Resources <span class="caret" aria-hidden="true">&#9662;</span></span>
-      <ul class="nav-submenu">
+      <button type="button" class="nl nav-group-label" aria-expanded="false" aria-controls="resources-menu">Resources <span class="caret" aria-hidden="true">&#9662;</span></button>
+      <ul class="nav-submenu" id="resources-menu">
         <li><a href="../book/" class="nl" data-page="book">Our Book</a></li>
         <li><a href="../resources/" class="nl" data-page="resources">Downloads</a></li>
         <li><a href="../sensory-spaces/" class="nl" data-page="sensory-spaces">Sensory Spaces</a></li>
@@ -38,6 +39,8 @@
     </li>
   </ul>
 </nav>
+
+<main id="main" tabindex="-1">
 
 <div class="page-wrap">
 
@@ -149,6 +152,8 @@
   </section>
 
 </div><!-- /page-wrap -->
+
+</main>
 
 <!-- ═══════ FOOTER ═══════ -->
 <footer>

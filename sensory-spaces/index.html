@@ -8,12 +8,13 @@
   <link rel="icon" type="image/png" href="../assets/favicon.png">
   <link rel="apple-touch-icon" href="../assets/logo.png">
   <link rel="stylesheet" href="../style.css">
-  <script src="/dyslexia-mode.js"></script>
+  <script src="/site.js"></script>
 </head>
 <body data-page="sensory-spaces">
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- ═══════ NAVIGATION ═══════ -->
-<nav>
+<nav aria-label="Main">
   <a href="/" class="nav-logo">
     <img src="../assets/logo.png" alt="Cocoon Corner logo">
     Cocoon Corner
@@ -23,8 +24,8 @@
     <li><a href="../" class="nl" data-page="home">Home</a></li>
     <li><a href="../curricula/" class="nl" data-page="curricula">Curricula</a></li>
     <li class="nav-group">
-      <span class="nl nav-group-label" tabindex="0" aria-haspopup="true">Resources <span class="caret" aria-hidden="true">&#9662;</span></span>
-      <ul class="nav-submenu">
+      <button type="button" class="nl nav-group-label" aria-expanded="false" aria-controls="resources-menu">Resources <span class="caret" aria-hidden="true">&#9662;</span></button>
+      <ul class="nav-submenu" id="resources-menu">
         <li><a href="../book/" class="nl" data-page="book">Our Book</a></li>
         <li><a href="../resources/" class="nl" data-page="resources">Downloads</a></li>
         <li><a href="../sensory-spaces/" class="nl" data-page="sensory-spaces">Sensory Spaces</a></li>
@@ -38,6 +39,8 @@
     </li>
   </ul>
 </nav>
+
+<main id="main" tabindex="-1">
 
 <div class="page-wrap">
 
@@ -159,17 +162,17 @@
         <div class="timeline">
           <div class="t-item">
             <div class="t-dot"></div>
-            <h4>Step 1 - Pick a Spot and Gather Your Items</h4>
+            <h3>Step 1 - Pick a Spot and Gather Your Items</h3>
             <p>The spot should ideally be away from bright lights and be away from the sounds of the classroom (like in a corner). For the items you include, try to include many tactile objects like fidget toys, slime, shakers, and more. Learn more about them in the downloadable file (see below).</p>
           </div>
           <div class="t-item">
             <div class="t-dot"></div>
-            <h4>Step 2 - Add Soft Seating Options</h4>
+            <h3>Step 2 - Add Soft Seating Options</h3>
             <p>Include soft seating options such as bean bags chairs, weighted lap pads, or egg chairs. Add the tactile items you chose earlier around them.</p>
           </div>
           <div class="t-item">
             <div class="t-dot"></div>
-            <h4>Step 3 - Manage the Sounds</h4>
+            <h3>Step 3 - Manage the Sounds</h3>
             <p>Cover the cocoon with blankets, rugs, or other such items to keep out sound and create a more calm, relaxed atmosphere. Alternatively (or in addition), provide noise-canceling headphones or a white noise machine.</p>
           </div>
         </div>
@@ -217,6 +220,8 @@
   </div>
 
 </div><!-- /page-wrap -->
+
+</main>
 
 <!-- ═══════ FOOTER ═══════ -->
 <footer>
