@@ -98,10 +98,41 @@
     if (link) link.setAttribute('aria-current', 'page');
   }
 
+  /* ── curriculum PDF previews ────────────────────────────────── */
+
+  function initPdfPreviews() {
+    // The PDFs are ~2-3 MB each, so the src is only attached once its
+    // panel is actually open. loading="lazy" then defers any that are
+    // open but still below the fold.
+    function attach(frame) {
+      if (!frame.getAttribute('src')) {
+        frame.setAttribute('src', frame.getAttribute('data-src'));
+      }
+    }
+
+    var frames = document.querySelectorAll('iframe[data-src]');
+    Array.prototype.forEach.call(frames, function (frame) {
+      var panel = frame.parentNode;
+      while (panel && panel.tagName !== 'DETAILS') panel = panel.parentNode;
+      if (!panel) { attach(frame); return; }
+      if (panel.open) attach(frame);
+      panel.addEventListener('toggle', function () {
+        if (panel.open) attach(frame);
+      });
+    });
+
+    // a download link inside <summary> would otherwise toggle the panel
+    var links = document.querySelectorAll('summary .summary-dl');
+    Array.prototype.forEach.call(links, function (a) {
+      a.addEventListener('click', function (e) { e.stopPropagation(); });
+    });
+  }
+
   function init() {
     initDyslexiaToggle();
     initNavDisclosure();
     markCurrentPage();
+    initPdfPreviews();
   }
 
   if (document.readyState === 'loading') {
