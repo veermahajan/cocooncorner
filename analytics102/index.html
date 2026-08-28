@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Analytics | Cocoon Corner</title>
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/logo.png">
+  <link rel="stylesheet" href="../style.css">
+  <script src="/site.js"></script>
+  <style>
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.4rem;
+      margin-bottom: 2rem;
+    }
+
+    .dash-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .dash-card.is-primary {
+      background: var(--green-light);
+      border: 2px solid var(--accent);
+    }
+
+    .dash-card h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .dash-card p {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+      margin: 0;
+      flex: 1;
+    }
+
+    .dash-card a.go {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: underline;
+      width: fit-content;
+    }
+
+    .note-box {
+      border-left: 3px solid var(--accent);
+      background: var(--green-light);
+      padding: 0.9rem 1.1rem;
+      font-size: 0.86rem;
+      line-height: 1.6;
+      color: var(--text-soft);
+      margin-bottom: 1.4rem;
+    }
+
+    .note-box strong { color: var(--text); }
+
+    .setup-list { font-size: 0.9rem; color: var(--text-soft); line-height: 1.8; padding-left: 1.1rem; }
+    .setup-list code {
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      padding: 0.05rem 0.35rem;
+      font-size: 0.85em;
+    }
+  </style>
+</head>
+<body data-page="analytics" data-no-analytics>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ═══════ NAVIGATION ═══════ -->
+<nav aria-label="Main">
+  <a href="/" class="nav-logo">
+    <img src="../assets/logo.png" alt="Cocoon Corner logo">
+    Cocoon Corner
+  </a>
+  <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  <ul id="nav-links">
+    <li><a href="../" class="nl" data-page="home">Home</a></li>
+    <li><a href="../curricula/" class="nl" data-page="curricula">Curricula</a></li>
+    <li class="nav-group">
+      <button type="button" class="nl nav-group-label" aria-expanded="false" aria-controls="resources-menu">Resources <span class="caret" aria-hidden="true">&#9662;</span></button>
+      <ul class="nav-submenu" id="resources-menu">
+        <li><a href="../book/" class="nl" data-page="book">Our Book</a></li>
+        <li><a href="../resources/" class="nl" data-page="resources">Downloads</a></li>
+        <li><a href="../sensory-spaces/" class="nl" data-page="sensory-spaces">Sensory Spaces</a></li>
+      </ul>
+    </li>
+    <li><a href="../team/" class="nl" data-page="team">Team</a></li>
+    <li>
+      <button type="button" class="dyslexia-toggle" aria-pressed="false">
+        <span class="toggle-mark" aria-hidden="true">Aa</span> <span class="toggle-text">Dyslexia mode</span>
+      </button>
+    </li>
+  </ul>
+</nav>
+
+<main id="main" tabindex="-1">
+
+<div class="page-wrap">
+
+  <!-- ═══════ PAGE HERO ═══════ -->
+  <div class="page-hero">
+    <span class="eyebrow">Internal</span>
+    <h1 class="page-title">Site <span>Analytics</span></h1>
+    <p class="page-subtitle">Where to see how the site is used and how often the lesson plans are downloaded.</p>
+  </div>
+
+  <section class="content-section">
+
+    <div class="note-box">
+      <strong>This page is unlisted, not private.</strong> It is kept out of the navigation and
+      carries a <code>noindex</code> tag so search engines skip it, but anyone with the URL can
+      open it &mdash; and the site&rsquo;s source repository is public, so the address is
+      discoverable there. Never put passwords or API keys on this page.
+    </div>
+
+    <div class="dash-grid">
+      <div class="dash-card is-primary">
+        <h2>GoatCounter &mdash; downloads</h2>
+        <p>
+          Counts every click on a download link: each grade-level curriculum PDF, the Teacher
+          Education Packet, and the slide decks. Each one appears under <em>Events</em> named
+          <code>download-&lt;filename&gt;</code>. Also records page views. No cookies, no personal data.
+        </p>
+        <a class="go" href="https://www.goatcounter.com/" target="_blank" rel="noopener">Open GoatCounter &rarr;</a>
+      </div>
+
+      <div class="dash-card">
+        <h2>Vercel &mdash; page views</h2>
+        <p>
+          Page views and visitor counts per page, straight from the host. Useful for seeing how many
+          people reach the curricula page at all. On the Hobby plan the history window is one month
+          and it cannot record download clicks &mdash; that is what GoatCounter is for.
+        </p>
+        <a class="go" href="https://vercel.com/veermahajan/cocooncorner/analytics" target="_blank" rel="noopener">Open Vercel Analytics &rarr;</a>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <span class="section-label">Setup</span>
+    <h2 class="section-heading">Two steps to switch this on</h2>
+    <ol class="setup-list">
+      <li>
+        <strong>Vercel:</strong> in the Vercel dashboard open the project &rarr; <em>Analytics</em>
+        &rarr; <em>Enable</em>. The tracking tag is already on every page, so nothing else is needed.
+      </li>
+      <li>
+        <strong>GoatCounter:</strong> create a free site at goatcounter.com, then put its code
+        (the <code>MYCODE</code> part of <code>MYCODE.goatcounter.com</code>) into
+        <code>GOATCOUNTER_CODE</code> at the top of <code>site.js</code>. Until it is set, nothing
+        loads and no requests are made.
+      </li>
+    </ol>
+
+    <hr class="section-divider">
+
+    <span class="section-label">Reading the numbers</span>
+    <h2 class="section-heading">Two things to keep in mind</h2>
+    <ol class="setup-list">
+      <li>
+        <strong>Downloads are counted as link clicks, not file requests.</strong> The curricula page
+        previews each PDF inline, so counting raw file requests would count previews as downloads.
+      </li>
+      <li>
+        <strong>Nothing was recorded before this was set up.</strong> Both tools start from zero;
+        earlier downloads cannot be recovered.
+      </li>
+    </ol>
+
+    <p style="font-size: 0.86rem; color: var(--text-soft); margin-top: 1.5rem;">
+      This page is excluded from both trackers, so checking your own stats does not inflate them.
+    </p>
+
+  </section>
+</div><!-- /page-wrap -->
+
+</main>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="foot-logo">Cocoon Corner</div>
+  <p>A Stanford Neurodiversity Project Initiative</p>
+  <p style="margin-top: 0.8rem;">
+    <a href="mailto:team@cocooncorner.org">team@cocooncorner.org</a> &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/cocoon_corners/" target="_blank" rel="noopener">@cocoon_corners</a>
+  </p>
+  <p class="foot-small">Illustrations by Camila Gonzalez · Built for every kind of mind.</p>
+</footer>
+
+<script>
+(function () {
+  var page = document.body.dataset.page || '';
+  document.querySelectorAll('nav a.nl').forEach(function (a) {
+    if (a.dataset.page === page) a.classList.add('active');
+  });
+  var btn   = document.querySelector('.nav-toggle');
+  var links = document.getElementById('nav-links');
+  if (btn && links) {
+    btn.addEventListener('click', function () {
+      var open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+      btn.textContent = open ? '✕' : '☰';
+    });
+  }
+})();
+</script>
+</body>
+</html>

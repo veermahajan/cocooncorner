@@ -128,11 +128,54 @@
     });
   }
 
+  /* ── GoatCounter: pageviews + download events ───────────────
+     Put your GoatCounter site code here (the "MYCODE" part of
+     https://MYCODE.goatcounter.com). Until it is set, nothing loads
+     and no requests are made. */
+  var GOATCOUNTER_CODE = '';
+
+  function loadGoatCounter() {
+    if (!GOATCOUNTER_CODE) return;
+    // pages marked data-no-analytics (e.g. the internal dashboard) opt out
+    if (document.body.hasAttribute('data-no-analytics')) return;
+    var el = document.createElement('script');
+    el.async = true;
+    el.src = 'https://gc.zgo.at/count.js';
+    el.setAttribute(
+      'data-goatcounter',
+      'https://' + GOATCOUNTER_CODE + '.goatcounter.com/count'
+    );
+    document.head.appendChild(el);
+  }
+
+  // name an event after the file being downloaded
+  function eventNameFor(link) {
+    var href = link.getAttribute('href') || '';
+    var file = href.split('/').pop().split('?')[0];
+    return 'download-' + file.replace(/\.[^.]+$/, '');
+  }
+
+  function initDownloadTracking() {
+    var links = document.querySelectorAll('a[download]');
+    Array.prototype.forEach.call(links, function (link) {
+      link.addEventListener('click', function () {
+        if (!window.goatcounter || !window.goatcounter.count) return;
+        window.goatcounter.count({
+          path: eventNameFor(link),
+          title: (link.textContent || 'Download').trim().slice(0, 80),
+          event: true
+        });
+      });
+    });
+  }
+
   function init() {
     initDyslexiaToggle();
     initNavDisclosure();
     markCurrentPage();
     initPdfPreviews();
+    loadGoatCounter();
+    initDownloadTracking();
   }
 
   if (document.readyState === 'loading') {
