@@ -999,7 +999,8 @@ html.dyslexia .partner-label {
 /* long measures are hard to track back to the next line */
 html.dyslexia .bio,
 html.dyslexia .mission-intro,
-html.dyslexia .usage-notice p {
+html.dyslexia .curricula-intro,
+html.dyslexia .page-notice {
   max-width: 66ch;
 }
 

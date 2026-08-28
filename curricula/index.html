@@ -10,37 +10,40 @@
   <link rel="stylesheet" href="../style.css">
   <script src="/site.js"></script>
   <style>
-    .usage-notice {
-      background: var(--green-light);
-      border-left: 4px solid var(--accent);
-      padding: 1.2rem 1.4rem;
-      max-width: 780px;
-      margin: 0 auto 1.2rem;
-    }
-
-    .usage-notice:last-of-type { margin-bottom: 2rem; }
-
-    .usage-notice .notice-title {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--text);
-      margin: 0 0 0.5rem;
-    }
-
-    .usage-notice p {
-      font-size: 0.9rem;
+    /* Intro blurb — centred to match the hero above it */
+    .curricula-intro {
+      font-size: 1.02rem;
       color: var(--text-soft);
-      line-height: 1.6;
+      max-width: 760px;
+      margin: 0 auto 1.5rem;
+      text-align: center;
+      line-height: 1.65;
+    }
+
+    /* Compact notices: two short blocks side by side so the lesson
+       plans stay visible without scrolling. */
+    .page-notices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+    }
+
+    .page-notice {
+      background: var(--green-light);
+      border-left: 3px solid var(--accent);
+      padding: 0.8rem 1rem;
       margin: 0;
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: var(--text-soft);
     }
 
-    .usage-notice p + p { margin-top: 0.6rem; }
+    .page-notice strong { color: var(--text); }
 
-    .usage-notice a {
-      color: var(--accent);
-      font-weight: 700;
-    }
+    .page-notice a { color: var(--accent); font-weight: 700; }
+
   </style>
 </head>
 <body data-page="curricula">
@@ -86,34 +89,24 @@
 
   <section class="content-section">
 
-    <div class="mb-2">
-      <p style="font-size: 1.05rem; color: var(--text-soft); max-width: 780px;">
-        Each curriculum is a five-day unit designed for elementary-age students. Lessons explore neurodiversity through movement, discussion, storytelling, and art. Click a grade level below to expand its full lesson plan. Download individual day worksheets or full-grade PDFs using the file links provided.
-      </p>
-    </div>
+    <p class="curricula-intro">
+      Each curriculum is a five-day unit designed for elementary-age students. Lessons explore
+      neurodiversity through movement, discussion, storytelling, and art. Click a grade level below
+      to expand its full lesson plan and preview or download the PDF.
+    </p>
 
-    <!-- ═══════ AI DISCLAIMER ═══════ -->
-    <div class="usage-notice">
-      <p class="notice-title">Written by people, not AI</p>
-      <p>
-        We do not use generative AI to create any of our lesson plans, worksheets, or
-        teacher education content. Every unit is researched, written, and reviewed by
-        our team, drawing on published guidance and the educators we work with.
+    <!-- ═══════ NOTICES (AI use + sharing consent) ═══════ -->
+    <div class="page-notices">
+      <p class="page-notice">
+        <strong>Written by people, not AI.</strong> We don&rsquo;t use generative AI to create any
+        lesson plan, worksheet, or teacher education content. Other than this website&rsquo;s
+        interface, we don&rsquo;t use AI anywhere in our work.
       </p>
-    </div>
-
-    <!-- ═══════ USAGE DISCLAIMER ═══════ -->
-    <div class="usage-notice">
-      <p class="notice-title">Please do not share these lesson plans without our consent</p>
-      <p>
-        These curricula are free for you to use in your own classroom, but they may not be
-        redistributed, republished, or shared beyond it without written consent from Cocoon Corner.
-      </p>
-      <p>
-        Interested in adopting these materials as part of an official school or district curriculum?
-        We would love to hear from you &mdash; reach out at
+      <p class="page-notice">
+        <strong>Please don&rsquo;t share these without our consent.</strong> Free to use in your own
+        classroom, but not to redistribute. For official school or district use, contact
         <a href="mailto:team@cocooncorner.org">team@cocooncorner.org</a> or
-        <a href="mailto:gramkumar@cocooncorner.org">gramkumar@cocooncorner.org</a> to learn more.
+        <a href="mailto:gramkumar@cocooncorner.org">gramkumar@cocooncorner.org</a>.
       </p>
     </div>
 
