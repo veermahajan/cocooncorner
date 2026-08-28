@@ -9,6 +9,56 @@
   <link rel="apple-touch-icon" href="../assets/logo.png">
   <link rel="stylesheet" href="../style.css">
   <script src="/site.js"></script>
+  <style>
+    /* Featured resource — the lead item on this page */
+    .feature-resource {
+      background: var(--green-light);
+      border: 2px solid var(--accent);
+      padding: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .feature-resource .feature-flag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #ffffff;
+      background: var(--accent);
+      padding: 0.25rem 0.55rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .feature-resource h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      color: var(--accent-dark);
+      line-height: 1.2;
+      margin: 0 0 0.6rem;
+    }
+
+    .feature-resource .lead {
+      font-size: 1rem;
+      color: var(--text-soft);
+      line-height: 1.65;
+      max-width: 720px;
+      margin: 0 0 1.1rem;
+    }
+
+    .feature-resource .feature-dl {
+      display: inline-block;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .feature-resource .feature-dl:hover { color: var(--accent-dark); }
+
+    .feature-resource .pdf-preview { margin-top: 1.4rem; }
+  </style>
 </head>
 <body data-page="resources">
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -52,6 +102,25 @@
   </div>
 
   <section class="content-section">
+
+    <!-- ═══════ FEATURED: TEACHER EDUCATION PACKET ═══════ -->
+    <div class="feature-resource">
+      <span class="feature-flag">Start here</span>
+      <h2>Teacher Education Packet</h2>
+      <p class="lead">
+        Everything an educator needs to run our K&ndash;5 neurodiversity curriculum. It covers the
+        Universal Design for Learning and strengths-based principles the units are built on, walks
+        through the five-day framework day by day, and closes with grade-by-grade teacher guides
+        &mdash; including facilitation notes and the common pitfalls to avoid in each lesson.
+      </p>
+      <a class="feature-dl" href="../assets/Cocoon_Corner_Teacher_Education_Packet.pdf" download>Download the packet (PDF &middot; 6 pages)</a>
+      <iframe class="pdf-preview" data-src="../assets/Cocoon_Corner_Teacher_Education_Packet.pdf"
+              title="Preview of the Cocoon Corner Teacher Education Packet" loading="lazy"></iframe>
+      <p class="preview-fallback">
+        Preview not loading? Some mobile browsers cannot display PDFs inline &mdash;
+        <a href="../assets/Cocoon_Corner_Teacher_Education_Packet.pdf" download>download the packet</a> instead.
+      </p>
+    </div>
 
     <!-- ── PPTX DOWNLOADS ── -->
     <div>
