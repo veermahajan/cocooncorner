@@ -73,10 +73,12 @@
     if (!el) return;
     el.className = 'status status--warn';
     el.innerHTML =
-      '<strong>One setting left.</strong> GoatCounter is recording, but its public counter ' +
-      'endpoints are switched off, so the numbers below cannot load yet. In GoatCounter go to ' +
-      '<em>Settings &rarr; Site settings</em> and tick <em>&ldquo;Allow adding visitor counts on ' +
-      'your website&rdquo;</em>, then reload this page.';
+      '<strong>One setting left.</strong> GoatCounter is recording visits and downloads, but it ' +
+      'refuses to serve these figures until the visitor counter is switched on. In GoatCounter ' +
+      'open <em>Settings &rarr; Site settings</em> and enable ' +
+      '<strong>&ldquo;allow using the visitor counter&rdquo;</strong> &mdash; the docs call the same ' +
+      'option &ldquo;allow adding visitor counts on your website&rdquo;. It is a different setting ' +
+      'from making the dashboard public or allowing it to be embedded. Save, then reload this page.';
   }
 
   function showLive(total) {
