@@ -9,70 +9,76 @@
   <link rel="apple-touch-icon" href="../assets/logo.png">
   <link rel="stylesheet" href="../style.css">
   <script src="/site.js"></script>
+  <script src="/analytics-dashboard.js" defer></script>
   <style>
-    .dash-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.4rem;
-      margin-bottom: 2rem;
+    .status {
+      border-left: 3px solid var(--line);
+      background: var(--bg-soft);
+      padding: 0.9rem 1.1rem;
+      font-size: 0.87rem;
+      line-height: 1.6;
+      color: var(--text-soft);
+      margin-bottom: 1.8rem;
     }
+    .status strong { color: var(--text); }
+    .status--ok   { border-left-color: var(--accent); background: var(--green-light); }
+    .status--warn { border-left-color: #b8860b; background: #fdf6e3; }
 
-    .dash-card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
+    .stat-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2.2rem;
+      font-size: 0.92rem;
     }
-
-    .dash-card.is-primary {
-      background: var(--green-light);
-      border: 2px solid var(--accent);
-    }
-
-    .dash-card h2 {
+    .stat-table caption {
+      text-align: left;
       font-family: var(--font-heading);
       font-weight: 700;
       font-size: 1.1rem;
       color: var(--text);
-      margin: 0;
+      padding-bottom: 0.6rem;
     }
-
-    .dash-card p {
-      font-size: 0.88rem;
+    .stat-table th,
+    .stat-table td {
+      border-bottom: 1px solid var(--line);
+      padding: 0.6rem 0.4rem;
+      text-align: left;
+    }
+    .stat-table thead th {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       color: var(--text-soft);
-      line-height: 1.6;
-      margin: 0;
-      flex: 1;
+      border-bottom: 2px solid var(--line);
     }
-
-    .dash-card a.go {
-      font-size: 0.9rem;
+    .stat-table tbody th { font-weight: 600; color: var(--text); }
+    .stat-table td {
+      text-align: right;
       font-weight: 700;
-      color: var(--accent);
-      text-decoration: underline;
-      width: fit-content;
+      color: var(--accent-dark);
+      font-variant-numeric: tabular-nums;
+      width: 7rem;
     }
+    .stat-table td.is-empty { color: var(--text-soft); font-weight: 400; }
+
+    .dash-links { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-bottom: 2rem; }
+    .dash-links a { font-size: 0.9rem; font-weight: 700; color: var(--accent); text-decoration: underline; }
 
     .note-box {
       border-left: 3px solid var(--accent);
       background: var(--green-light);
       padding: 0.9rem 1.1rem;
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       line-height: 1.6;
       color: var(--text-soft);
-      margin-bottom: 1.4rem;
+      margin-bottom: 1.6rem;
     }
-
     .note-box strong { color: var(--text); }
-
-    .setup-list { font-size: 0.9rem; color: var(--text-soft); line-height: 1.8; padding-left: 1.1rem; }
-    .setup-list code {
-      background: var(--bg-soft);
+    .note-box code {
+      background: var(--white);
       border: 1px solid var(--line);
       padding: 0.05rem 0.35rem;
-      font-size: 0.85em;
+      font-size: 0.9em;
     }
   </style>
 </head>
@@ -114,74 +120,62 @@
   <div class="page-hero">
     <span class="eyebrow">Internal</span>
     <h1 class="page-title">Site <span>Analytics</span></h1>
-    <p class="page-subtitle">Where to see how the site is used and how often the lesson plans are downloaded.</p>
+    <p class="page-subtitle">How often the lesson plans are downloaded, and how many people reach each page.</p>
   </div>
 
   <section class="content-section">
 
     <div class="note-box">
       <strong>This page is unlisted, not private.</strong> It is kept out of the navigation and
-      carries a <code>noindex</code> tag so search engines skip it, but anyone with the URL can
-      open it &mdash; and the site&rsquo;s source repository is public, so the address is
-      discoverable there. Never put passwords or API keys on this page.
+      carries a <code>noindex</code> tag, but anyone with the URL can open it &mdash; and the
+      site&rsquo;s source repository is public, so the address is discoverable there. It shows only
+      aggregate counts and holds no keys or passwords.
     </div>
 
-    <div class="dash-grid">
-      <div class="dash-card is-primary">
-        <h2>GoatCounter &mdash; downloads</h2>
-        <p>
-          Counts every click on a download link: each grade-level curriculum PDF, the Teacher
-          Education Packet, and the slide decks. Each one appears under <em>Events</em> named
-          <code>download-&lt;filename&gt;</code>. Also records page views. No cookies, no personal data.
-        </p>
-        <a class="go" href="https://www.goatcounter.com/" target="_blank" rel="noopener">Open GoatCounter &rarr;</a>
-      </div>
+    <p id="gc-status" class="status">Loading figures from GoatCounter&hellip;</p>
 
-      <div class="dash-card">
-        <h2>Vercel &mdash; page views</h2>
-        <p>
-          Page views and visitor counts per page, straight from the host. Useful for seeing how many
-          people reach the curricula page at all. On the Hobby plan the history window is one month
-          and it cannot record download clicks &mdash; that is what GoatCounter is for.
-        </p>
-        <a class="go" href="https://vercel.com/veermahajan/cocooncorner/analytics" target="_blank" rel="noopener">Open Vercel Analytics &rarr;</a>
-      </div>
-    </div>
+    <table class="stat-table">
+      <caption>Downloads</caption>
+      <thead>
+        <tr><th scope="col">File</th><th scope="col">Downloads</th></tr>
+      </thead>
+      <tbody id="dl-body">
+        <tr><th scope="row">Loading&hellip;</th><td class="is-empty">—</td></tr>
+      </tbody>
+    </table>
+
+    <table class="stat-table">
+      <caption>Page views</caption>
+      <thead>
+        <tr><th scope="col">Page</th><th scope="col">Views</th></tr>
+      </thead>
+      <tbody id="pv-body">
+        <tr><th scope="row">Loading&hellip;</th><td class="is-empty">—</td></tr>
+      </tbody>
+    </table>
 
     <hr class="section-divider">
 
-    <span class="section-label">Setup</span>
-    <h2 class="section-heading">Two steps to switch this on</h2>
-    <ol class="setup-list">
-      <li>
-        <strong>Vercel:</strong> in the Vercel dashboard open the project &rarr; <em>Analytics</em>
-        &rarr; <em>Enable</em>. The tracking tag is already on every page, so nothing else is needed.
-      </li>
-      <li>
-        <strong>GoatCounter:</strong> create a free site at goatcounter.com, then put its code
-        (the <code>MYCODE</code> part of <code>MYCODE.goatcounter.com</code>) into
-        <code>GOATCOUNTER_CODE</code> at the top of <code>site.js</code>. Until it is set, nothing
-        loads and no requests are made.
-      </li>
-    </ol>
+    <span class="section-label">Full dashboards</span>
+    <h2 class="section-heading">Dig deeper</h2>
+    <div class="dash-links">
+      <a href="https://cocooncorner.goatcounter.com" target="_blank" rel="noopener">GoatCounter dashboard &rarr;</a>
+      <a href="https://vercel.com/veermahajan/cocooncorner/analytics" target="_blank" rel="noopener">Vercel Analytics &rarr;</a>
+    </div>
 
-    <hr class="section-divider">
+    <div class="note-box">
+      <strong>Three things worth knowing.</strong>
+      Downloads are counted as clicks on a download link, not as file requests &mdash; the curricula
+      page previews each PDF inline, so counting requests would score previews as downloads.
+      Figures are cached by GoatCounter for up to four hours, so a download you just made may not
+      appear straight away. And nothing was recorded before this was set up, so both tools start
+      from zero.
+    </div>
 
-    <span class="section-label">Reading the numbers</span>
-    <h2 class="section-heading">Two things to keep in mind</h2>
-    <ol class="setup-list">
-      <li>
-        <strong>Downloads are counted as link clicks, not file requests.</strong> The curricula page
-        previews each PDF inline, so counting raw file requests would count previews as downloads.
-      </li>
-      <li>
-        <strong>Nothing was recorded before this was set up.</strong> Both tools start from zero;
-        earlier downloads cannot be recovered.
-      </li>
-    </ol>
-
-    <p style="font-size: 0.86rem; color: var(--text-soft); margin-top: 1.5rem;">
-      This page is excluded from both trackers, so checking your own stats does not inflate them.
+    <p style="font-size: 0.85rem; color: var(--text-soft);">
+      Visits to this page are excluded from tracking, so checking your own numbers does not inflate them.
+      Vercel&rsquo;s figures are not shown here &mdash; reading them needs a private API key, which cannot go
+      in a public repository &mdash; so use the dashboard link above for those.
     </p>
 
   </section>
