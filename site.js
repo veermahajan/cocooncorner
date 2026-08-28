@@ -132,7 +132,7 @@
      Put your GoatCounter site code here (the "MYCODE" part of
      https://MYCODE.goatcounter.com). Until it is set, nothing loads
      and no requests are made. */
-  var GOATCOUNTER_CODE = '';
+  var GOATCOUNTER_CODE = 'cocooncorner';
 
   function loadGoatCounter() {
     if (!GOATCOUNTER_CODE) return;
