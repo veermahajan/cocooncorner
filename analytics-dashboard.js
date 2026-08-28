@@ -37,8 +37,11 @@
     var url = SITE + '/' + encodeURIComponent(path) + '.json';
     return fetch(url, { mode: 'cors' })
       .then(function (r) {
-        if (!r.ok) return null;
-        return r.json();
+        // GoatCounter answers 404 with a valid {"count":"0"} body for a path
+        // that has had no hits yet, so a 404 is a real zero, not a failure.
+        // Anything else (403 when the counter is off) is treated as no data.
+        if (r.status !== 200 && r.status !== 404) return null;
+        return r.json().catch(function () { return null; });
       })
       .then(function (d) { return d && d.count != null ? d.count : null; })
       .catch(function () { return null; });
