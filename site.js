@@ -169,6 +169,51 @@
     });
   }
 
+  /* ── background motion control ──────────────────────────────
+     The hero collage drifts continuously. Motion sensitivity is
+     common among the readers this site is for, so the belt can be
+     stopped, the choice is remembered, and it starts stopped for
+     anyone whose system already asks for reduced motion. */
+
+  var MOTION_KEY = 'cc-motion';
+
+  function initMotionToggle() {
+    var hero = document.querySelector('.hero');
+    var btn = document.querySelector('.motion-toggle');
+    if (!hero || !btn) return;
+
+    var icon = btn.querySelector('.motion-icon');
+    var label = btn.querySelector('.motion-text');
+
+    function saved() {
+      try { return localStorage.getItem(MOTION_KEY); } catch (e) { return null; }
+    }
+
+    var prefersReduced = false;
+    try {
+      prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    } catch (e) {}
+
+    var choice = saved();
+    var paused = choice ? choice === 'paused' : prefersReduced;
+
+    function apply() {
+      if (paused) hero.classList.add('motion-paused');
+      else hero.classList.remove('motion-paused');
+      btn.setAttribute('aria-label', paused ? 'Play background motion' : 'Pause background motion');
+      if (icon) icon.innerHTML = paused ? '&#9654;' : '&#10074;&#10074;';
+      if (label) label.textContent = paused ? 'Play' : 'Pause';
+    }
+
+    apply();
+
+    btn.addEventListener('click', function () {
+      paused = !paused;
+      try { localStorage.setItem(MOTION_KEY, paused ? 'paused' : 'playing'); } catch (e) {}
+      apply();
+    });
+  }
+
   function init() {
     initDyslexiaToggle();
     initNavDisclosure();
@@ -176,6 +221,7 @@
     initPdfPreviews();
     loadGoatCounter();
     initDownloadTracking();
+    initMotionToggle();
   }
 
   if (document.readyState === 'loading') {

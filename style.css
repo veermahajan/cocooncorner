@@ -1310,14 +1310,53 @@ h2.section-heading {
   z-index: 0;
 }
 
-/* the wash that keeps the wordmark readable over moving artwork */
+/* The wash that keeps the wordmark readable. Strong through the middle
+   where the type sits, thinning towards the edges so more of the
+   artwork shows. A flat 70% was measured to drop "Corner." to 2.73:1
+   and the sub-line to 4.20:1 against the darkest pixels in the
+   collage, so the centre is held at 88% instead. */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.80);
+  background: radial-gradient(
+    ellipse 45% 60% at 50% 50%,
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(255, 255, 255, 0.88) 55%,
+    rgba(255, 255, 255, 0.62) 100%
+  );
   z-index: 1;
 }
+
+/* the pause control, bottom-right of the banner */
+.motion-toggle { display: none; }
+html.js .motion-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* `.hero > *` later in the file also sets position, so this needs to
+   out-specify it to stay pinned in the corner */
+.hero .motion-toggle {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.9rem;
+  z-index: 3;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--line);
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.motion-toggle:hover { background: #ffffff; border-color: var(--text-soft); }
+.motion-icon { font-size: 0.8em; }
+
+.hero.motion-paused::before { animation-play-state: paused; }
 
 .hero > * { position: relative; z-index: 2; }
 
