@@ -10,29 +10,6 @@
   <link rel="stylesheet" href="style.css">
   <script src="/site.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>
-  <style>
-    /* Primary offering card in the mission grid */
-    .card--feature {
-      background: var(--green-light);
-      border: 2px solid var(--accent);
-    }
-
-    .card--feature .feature-flag {
-      display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: var(--white);
-      background: var(--accent);
-      padding: 0.25rem 0.55rem;
-      margin-bottom: 0.7rem;
-    }
-
-    .card--feature h3 { color: var(--accent-dark); }
-
-    .card--feature .pill-btn { font-size: 1rem; }
-  </style>
 </head>
 <body data-page="home">
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -40,7 +17,7 @@
 <!-- ═══════ NAVIGATION ═══════ -->
 <nav aria-label="Main">
   <a href="/" class="nav-logo">
-    <img src="assets/logo.png" alt="Cocoon Corner logo">
+    <img src="assets/favicon.png" alt="Cocoon Corner logo">
     Cocoon Corner
   </a>
   <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
@@ -69,7 +46,7 @@
 <div class="page-wrap">
 
   <!-- ═══════ HERO ═══════ -->
-  <div class="hero">
+  <div class="hero" role="img" aria-label="A collage of Cocoon Corner artwork: illustrations from Clover the Caterpillar's Journey by Camila Gonzalez, lesson plan art, and photographs of sensory spaces we have built">
     <div class="hero-text">
       <div class="hero-partners">
         <img src="assets/snp.png" alt="Stanford Neurodiversity Project logo" class="partner-logo">
@@ -85,9 +62,6 @@
       </div>
     </div>
 
-    <div class="hero-img">
-      <img src="assets/coverimage.png" alt="Cocoon Corner storybook cover">
-    </div>
   </div>
 
   <!-- ═══════ CONDITIONS ═══════ -->
@@ -139,13 +113,12 @@
           </p>
           <a href="sensory-spaces/" class="pill-btn outline" style="margin-top: 1rem;">Learn more</a>
         </div>
-        <div class="card card--feature">
-          <span class="feature-flag">Our core work</span>
-          <h3 style="font-weight: 700; font-size: 1.25rem; margin-bottom: 0.4rem;">Curricula &amp; Guides</h3>
+        <div class="card">
+          <h3 style="font-weight: 700; font-size: 1.1rem; margin-bottom: 0.4rem;">Curricula &amp; Guides</h3>
           <p style="color: var(--text-soft); font-size: 0.9rem;">
             Free lesson plans, worksheets, and DIY sensory space guides for teachers &amp; librarians.
           </p>
-          <a href="curricula/" class="pill-btn" style="margin-top: 1rem;">Learn more</a>
+          <a href="curricula/" class="pill-btn outline" style="margin-top: 1rem;">Learn more</a>
         </div>
       </div>
     </div>

@@ -477,7 +477,7 @@ footer .foot-small {
 .stat-img.logo-snp   { height: 48px; max-width: 48px; }
 .stat-img.logo-sm    { height: 36px; max-width: 120px; }
 .stat-img.logo-cboe  { height: 48px; max-width: 48px; }
-.stat-img.logo-fusd  { height: 48px; max-width: 140px; }
+.stat-img.logo-fusd  { height: 72px; max-width: 205px; }
 
 /* ── Mission section ── */
 .mission-section {
@@ -893,7 +893,7 @@ details[open] summary::after { content: '\2212'; }
   .stat-img.logo-sm   { height: 30px; }
   .stat-img.logo-snp  { height: 38px; max-width: 38px; }
   .stat-img.logo-cboe { height: 38px; max-width: 38px; }
-  .stat-img.logo-fusd { height: 40px; max-width: 120px; }
+  .stat-img.logo-fusd { height: 56px; max-width: 160px; }
 
   .progress-boxes { grid-template-columns: 1fr; }
   .prog-num { font-size: 1.6rem; }
@@ -1104,4 +1104,238 @@ details summary .summary-meta {
 
 @media (max-width: 760px) {
   .pdf-preview { height: 60vh; min-height: 340px; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   INSTITUTIONAL LAYOUT  —  structure borrowed from columbia.edu,
+   Cocoon Corner's own colours kept throughout.
+   What is borrowed: the solid brand-coloured masthead with an
+   underlined active tab, humanist sans headings at light weight,
+   centred letterspaced section labels, alternating pale grey
+   bands, and solid rectangular buttons in place of plain links.
+   No Columbia marks, wordmark or ornament are reproduced.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* structural tokens only — brand colours below are unchanged */
+  --band:          #f9f9f9;
+  --bg-soft:       #f2f2f2;
+  --line:          #dcdcdc;
+  --accent-pale:   #9ed4bd;
+
+  --font-heading:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body:     "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-wordmark: Georgia, "Times New Roman", serif;
+}
+
+/* ── masthead: solid brand bar, active tab underlined ──────── */
+nav {
+  background: var(--accent);
+  border-bottom: 4px solid var(--accent-dark);
+  padding: 0 2.5rem;
+}
+
+.nav-logo {
+  color: #ffffff;
+  font-family: var(--font-wordmark);
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+}
+.nav-logo img { height: 34px; }
+
+nav .nl {
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 0.95rem;
+  border-bottom: 4px solid transparent;
+  padding: 0.55rem 0.9rem;
+}
+nav .nl:hover,
+nav .nl.active {
+  color: #ffffff;
+  border-bottom-color: var(--accent-pale);
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.nav-toggle { color: #ffffff; border-color: rgba(255, 255, 255, 0.6); }
+
+.dyslexia-toggle { color: #ffffff; border-color: rgba(255, 255, 255, 0.55); }
+.dyslexia-toggle:hover { color: #ffffff; border-color: #ffffff; }
+.dyslexia-toggle[aria-pressed="true"] {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--accent);
+}
+
+.nav-submenu { border-color: var(--line); }
+.nav-submenu .nl { color: var(--text); border-bottom-color: transparent; }
+.nav-submenu .nl:hover,
+.nav-submenu .nl.active { color: var(--accent); background: var(--band); }
+
+/* ── banner + section rhythm ───────────────────────────────── */
+.page-hero {
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--line);
+  padding: 3.2rem 2rem 2.8rem;
+}
+.page-title {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.6vw, 3rem);
+  letter-spacing: -0.01em;
+}
+.page-title span { color: var(--accent); font-weight: 600; }
+.page-subtitle { max-width: 620px; }
+
+.eyebrow { color: var(--accent); letter-spacing: 2px; font-size: 0.72rem; }
+
+.section-label {
+  display: block;
+  text-align: center;
+  color: var(--accent);
+  letter-spacing: 2.5px;
+  font-size: 0.74rem;
+  margin-bottom: 0.4rem;
+}
+h2.section-heading {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+
+.mission-section { background: var(--band); }
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.7rem, 6.2vw, 4.2rem);
+}
+.hero-title em { color: var(--accent); font-style: normal; font-weight: 600; }
+
+/* ── buttons: solid rectangles, the way Columbia does calls to
+      action, replacing the plain underlined text links ──────── */
+.pill-btn,
+.dl-btn,
+.summary-dl,
+.feature-dl,
+.file-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.6rem 1.15rem;
+  border: 1px solid var(--accent);
+  text-decoration: none;
+  width: fit-content;
+}
+.pill-btn:hover,
+.dl-btn:hover,
+.summary-dl:hover,
+.feature-dl:hover,
+.file-link:hover {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: #ffffff;
+}
+
+/* secondary action: outlined rather than filled */
+.pill-btn.outline {
+  background: none;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+.pill-btn.outline:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+/* the summary row button sits tighter */
+.summary-dl { padding: 0.45rem 0.9rem; font-size: 0.82rem; }
+
+/* ── cards ─────────────────────────────────────────────────── */
+.card, .pptx-card, .member-card-2027, details { border-color: var(--line); }
+.stat-num { color: var(--accent); }
+
+/* Columbia-style solid caption bar under gallery images */
+.gallery-caption {
+  background: var(--accent);
+  color: #ffffff;
+  padding: 0.6rem 0.8rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 760px) {
+  nav { padding: 0.75rem 1.2rem; }
+  .nav-logo { font-size: 1.1rem; }
+  .summary-dl { margin-top: 0.4rem; }
+}
+
+/* ── Homepage art banner ──────────────────────────────────────
+   All thirteen Clover the Caterpillar illustrations, cropped and
+   tiled into one strip. No generated or altered artwork — the
+   originals are only cropped, scaled and placed side by side. */
+.hero {
+  position: relative;
+  overflow: hidden;
+  /* break out of the 1150px column so the art reaches both screen edges */
+  max-width: none;
+  margin: 0;
+  width: 100%;
+  grid-template-columns: 1fr;
+  background: none;
+  border-bottom: 1px solid var(--line);
+  padding: 4.5rem 2.5rem;
+  text-align: center;
+  place-items: center;
+}
+
+/* the belt: the collage tiled horizontally and slid one full tile
+   width per cycle, so the loop is seamless */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("assets/clover-art-banner.jpg");
+  background-repeat: repeat-x;
+  background-size: 1600px auto;
+  background-position: 0 center;
+  animation: art-conveyor 60s linear infinite;
+  z-index: 0;
+}
+
+/* the wash that keeps the wordmark readable over moving artwork */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.80);
+  z-index: 1;
+}
+
+.hero > * { position: relative; z-index: 2; }
+
+@keyframes art-conveyor {
+  from { background-position:     0 center; }
+  to   { background-position: -1600px center; }
+}
+
+/* motion sensitivity is common among the readers this site is for —
+   hold the belt still for anyone who asks the OS for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero::before { animation: none; }
+}
+
+.hero-text { max-width: 760px; }
+.hero-partners { justify-content: center; }
+.hero-cta { justify-content: center; }
+
+@media (max-width: 760px) {
+  .hero { padding: 3rem 1.4rem; }
 }
