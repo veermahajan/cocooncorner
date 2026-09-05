@@ -860,6 +860,10 @@ details[open] summary::after { content: '\2212'; }
   .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
   .two-col.reverse > * { order: unset; }
 
+  /* title · meta · download is a nowrap row; below this it no longer
+     fits and pushed the button off the right edge */
+  details summary { flex-direction: column; align-items: flex-start; }
+
   .book-cover-img { max-width: 260px; }
   .progress-boxes { grid-template-columns: 1fr 1fr; }
   .story-layout { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -903,8 +907,37 @@ details[open] summary::after { content: '\2212'; }
   .items-grid { grid-template-columns: 1fr 1fr; }
 
   .member-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+}
 
-  details summary { flex-direction: column; align-items: flex-start; }
+
+/* ═══════════════════════════════════════════════════════════════
+   OPENDYSLEXIC
+   Self-hosted (CSP allows font-src 'self' only) and used solely by
+   the dyslexia-friendly mode below, so these files are never
+   downloaded unless a reader turns that mode on. Only the upright
+   faces ship: the mode replaces italics with bold, so the italic
+   files would be ~230 KB nobody ever renders.
+   OpenDyslexic by Abbie Gonzalez, SIL Open Font License 1.1 —
+   see assets/fonts/OFL.txt.
+   ═══════════════════════════════════════════════════════════════ */
+
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("assets/fonts/OpenDyslexic-Regular.woff2") format("woff2"),
+       url("assets/fonts/OpenDyslexic-Regular.woff")  format("woff");
+  font-weight: 400;
+  font-style: normal;
+  /* show the fallback immediately rather than a blank page */
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("assets/fonts/OpenDyslexic-Bold.woff2") format("woff2"),
+       url("assets/fonts/OpenDyslexic-Bold.woff")  format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 
@@ -956,9 +989,13 @@ html.js .dyslexia-toggle { display: inline-flex; }
 html.dyslexia {
   font-size: 18px;
 
-  /* headings drop Georgia; Verdana/Tahoma have wide, open letterforms */
-  --font-heading: Verdana, Tahoma, "Trebuchet MS", Arial, sans-serif;
-  --font-body:    Verdana, Tahoma, "Trebuchet MS", Arial, sans-serif;
+  /* OpenDyslexic: weighted bottoms and asymmetric letterforms so
+     b/d/p/q stop mirroring each other. Verdana/Tahoma stay in the
+     stack as the fallback while the file loads, or if it fails. */
+  --font-heading:  "OpenDyslexic", Verdana, Tahoma, "Trebuchet MS", Arial, sans-serif;
+  --font-body:     "OpenDyslexic", Verdana, Tahoma, "Trebuchet MS", Arial, sans-serif;
+  /* the masthead wordmark is serif by default and had been missed */
+  --font-wordmark: "OpenDyslexic", Verdana, Tahoma, "Trebuchet MS", Arial, sans-serif;
 
   /* warm off-white instead of pure white, which glares */
   --white:   #fbf7f0;
@@ -1378,3 +1415,117 @@ html.js .motion-toggle {
 @media (max-width: 760px) {
   .hero { padding: 3rem 1.4rem; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   DYSLEXIA MODE — MASTHEAD FIT
+   Placed last, after the masthead overrides above, so these win
+   without needing !important.
+
+   OpenDyslexic sets roughly 44% wider than the default stack at the
+   same size, so the horizontal masthead stops fitting well before
+   the usual 760px hamburger breakpoint. Measured on the widest
+   page: the full bar needs 1115px, or 951px with the mode toggle
+   collapsed to "Aa". Rather than shrink the type — which would
+   defeat the point of the mode — the nav collapses earlier instead.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* hamburger up to 980px (mirrors the ≤760px block) */
+@media (max-width: 980px) {
+  html.dyslexia nav {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: var(--nav-h);
+    padding: 0.75rem 1.2rem;
+    gap: 0;
+  }
+  html.dyslexia .nav-toggle { display: block; }
+
+  html.dyslexia nav ul#nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    padding: 0.5rem 0 0.75rem;
+    gap: 0.2rem;
+  }
+  html.dyslexia nav ul#nav-links.open { display: flex; }
+
+  html.dyslexia .nav-group { padding: 0; margin: 0; }
+  html.dyslexia .nav-submenu {
+    position: static;
+    min-width: 0;
+    background: none;
+    border: none;
+    padding: 0 0 0 1rem;
+  }
+
+  /* the curriculum summary row (title · meta · download) is nowrap;
+     at this width the wider face pushes the button off-screen, so
+     stack it early, exactly as the ≤760px rule already does */
+  html.dyslexia details summary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* 981–1140px: the bar fits, but only with the toggle collapsed to
+   "Aa". The label stays in the accessibility tree. */
+@media (min-width: 981px) and (max-width: 1140px) {
+  html.dyslexia .dyslexia-toggle .toggle-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  html.dyslexia .dyslexia-toggle { padding: 0.35rem 0.5rem; }
+}
+
+
+/* ── dyslexia mode: narrow-screen reflow ─────────────────────────
+   The mode raises the root size to 18px, which scales every fixed
+   grid minimum and padding up by 12.5%. On a phone that was enough
+   to push two pages sideways (WCAG 2.1 Reflow). Grid items default
+   to min-width:auto, so one long word sets the whole track's floor
+   — the fixes are to let those tracks shrink and to give the long
+   strings somewhere to break. */
+
+/* a bare URL has no break opportunity; this one is long enough to
+   overflow on its own, in any mode */
+.rtag { max-width: 100%; }
+.rtag a { overflow-wrap: anywhere; }
+
+@media (max-width: 620px) {
+  html.dyslexia .items-grid,
+  html.dyslexia .two-col,
+  html.dyslexia .principles-grid { grid-template-columns: 1fr; }
+
+  html.dyslexia .items-grid > *,
+  html.dyslexia .two-col > * { min-width: 0; }
+
+  html.dyslexia .item-tag { overflow-wrap: break-word; }
+}
+
+/* The "Progress and Reach" figures were an inline two-column grid,
+   so no media query could reach them. As a class they can collapse
+   on a phone — the big numerals set a wide floor otherwise. */
+.reach-grid {
+  display: grid;
+  /* auto-fit rather than a hard 1fr 1fr: the big numerals set a wide
+     floor, so the pair has to be free to become one column. min()
+     keeps the floor from exceeding the screen on a small phone. */
+  grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.reach-grid > * { min-width: 0; }
+
+/* long single words in a big display size can outrun a narrow column */
+.page-title,
+.hero-title { overflow-wrap: break-word; }
+
+/* email addresses are long and unbreakable at phone widths */
+.page-notice a,
+.rtag a { overflow-wrap: anywhere; }
