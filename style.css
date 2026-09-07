@@ -1048,21 +1048,6 @@ html.dyslexia button:focus-visible {
   outline-offset: 2px;
 }
 
-/* Between the hamburger breakpoint and 900px the nav is tight — in
-   dyslexia mode the larger type plus this button overflowed the bar.
-   Collapse to just "Aa" there, but keep the label for screen readers. */
-@media (min-width: 761px) and (max-width: 900px) {
-  .dyslexia-toggle .toggle-text {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-  }
-  .dyslexia-toggle { padding: 0.35rem 0.5rem; }
-}
-
 
 /* ═══════════════════════════════════════════════════════════════
    ACCESSIBILITY: skip link + a visible focus indicator everywhere
@@ -1418,20 +1403,71 @@ html.js .motion-toggle {
 
 
 /* ═══════════════════════════════════════════════════════════════
-   DYSLEXIA MODE — MASTHEAD FIT
+   MASTHEAD FIT
    Placed last, after the masthead overrides above, so these win
    without needing !important.
 
-   OpenDyslexic sets roughly 44% wider than the default stack at the
-   same size, so the horizontal masthead stops fitting well before
-   the usual 760px hamburger breakpoint. Measured on the widest
-   page: the full bar needs 1115px, or 951px with the mode toggle
-   collapsed to "Aa". Rather than shrink the type — which would
-   defeat the point of the mode — the nav collapses earlier instead.
+   Five top-level tabs plus the mode toggle is a wide bar, and in
+   dyslexia mode OpenDyslexic sets roughly 44% wider again at the
+   same size. Measured widths for the whole bar (wordmark + tabs +
+   padding):
+
+                       full label   toggle collapsed to "Aa"
+     normal mode          930px              821px
+     dyslexia mode       1277px             1101px
+
+   Rather than shrink the type, the bar gives way in two steps:
+   collapse the toggle to "Aa" first, then fall back to the
+   hamburger. The toggle's text label stays in the accessibility
+   tree either way.
    ═══════════════════════════════════════════════════════════════ */
 
-/* hamburger up to 980px (mirrors the ≤760px block) */
-@media (max-width: 980px) {
+/* hamburger — normal mode below 850px, dyslexia mode below 1120px.
+   (The ≤760px block already does this; re-stating is harmless and
+   keeps each mode's threshold in one readable place.) */
+@media (max-width: 850px) {
+  nav {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: var(--nav-h);
+    padding: 0.75rem 1.2rem;
+    gap: 0;
+  }
+  .nav-toggle { display: block; }
+
+  nav ul#nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    padding: 0.5rem 0 0.75rem;
+    gap: 0.2rem;
+  }
+  nav ul#nav-links.open { display: flex; }
+
+  .nav-group { padding: 0; margin: 0; }
+  .nav-submenu {
+    position: static;
+    min-width: 0;
+    background: none;
+    border: none;
+    padding: 0 0 0 1rem;
+    align-items: stretch;
+  }
+
+  /* Inside the open menu the sub-items sit on the green bar, not on
+     the white desktop dropdown panel, so they need the masthead's
+     white text — the dark default measured 3.02:1 against the green,
+     under the 4.5:1 minimum. */
+  #nav-links .nav-submenu .nl { color: #ffffff; }
+  #nav-links .nav-submenu .nl:hover,
+  #nav-links .nav-submenu .nl.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.10);
+  }
+}
+
+@media (max-width: 1120px) {
   html.dyslexia nav {
     flex-wrap: wrap;
     height: auto;
@@ -1458,20 +1494,32 @@ html.js .motion-toggle {
     background: none;
     border: none;
     padding: 0 0 0 1rem;
+    align-items: stretch;
   }
 
-  /* the curriculum summary row (title · meta · download) is nowrap;
-     at this width the wider face pushes the button off-screen, so
-     stack it early, exactly as the ≤760px rule already does */
-  html.dyslexia details summary {
-    flex-direction: column;
-    align-items: flex-start;
+  html.dyslexia #nav-links .nav-submenu .nl { color: #ffffff; }
+  html.dyslexia #nav-links .nav-submenu .nl:hover,
+  html.dyslexia #nav-links .nav-submenu .nl.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.10);
   }
 }
 
-/* 981–1140px: the bar fits, but only with the toggle collapsed to
-   "Aa". The label stays in the accessibility tree. */
-@media (min-width: 981px) and (max-width: 1140px) {
+/* the band just above each hamburger threshold, where the bar fits
+   only with the toggle collapsed */
+@media (min-width: 851px) and (max-width: 950px) {
+  .dyslexia-toggle .toggle-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .dyslexia-toggle { padding: 0.35rem 0.5rem; }
+}
+
+@media (min-width: 1121px) and (max-width: 1300px) {
   html.dyslexia .dyslexia-toggle .toggle-text {
     position: absolute;
     width: 1px;
@@ -1481,6 +1529,16 @@ html.js .motion-toggle {
     white-space: nowrap;
   }
   html.dyslexia .dyslexia-toggle { padding: 0.35rem 0.5rem; }
+}
+
+/* The curriculum summary row (title · meta · download) is nowrap and
+   stops fitting sooner in dyslexia mode than the shared 760px rule
+   allows for. */
+@media (max-width: 980px) {
+  html.dyslexia details summary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 
