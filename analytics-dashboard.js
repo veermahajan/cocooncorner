@@ -1,9 +1,14 @@
 /* Live figures for the internal /analytics102 page.
 
    Reads GoatCounter's public visitor-counter endpoints. These need
-   "Allow adding visitor counts on your website" enabled in the
-   GoatCounter site settings; until then every request returns 403 and
-   we show setup instructions instead of numbers.
+   "allow using the visitor counter" enabled in the GoatCounter site
+   settings; until then every request is refused and we show setup
+   instructions instead of numbers.
+
+   Freshness: the figures are re-fetched on load, every five minutes
+   while the tab is visible, and on demand. GoatCounter's server keeps
+   its own copy for up to four hours, which is the floor on how
+   current these numbers can be.
 
    No API token is involved — a token would be a secret, and this
    repository is public. */
@@ -35,7 +40,13 @@
   function fetchCount(path) {
     // TOTAL is a special path and takes no leading slash
     var url = SITE + '/' + encodeURIComponent(path) + '.json';
-    return fetch(url, { mode: 'cors' })
+    // GoatCounter sends every counter response with an Expires header four
+    // hours out, so a plain fetch() was answered from the browser's cache
+    // on every reload and the page never changed. no-store always goes to
+    // the network. (GoatCounter's own server cache, which it documents as
+    // "up to four hours", still applies and can't be bypassed from here —
+    // it ignores query strings.)
+    return fetch(url, { mode: 'cors', cache: 'no-store' })
       .then(function (r) {
         // GoatCounter answers 404 with a valid {"count":"0"} body for a path
         // that has had no hits yet, so a 404 is a real zero, not a failure.
@@ -84,17 +95,33 @@
       'from making the dashboard public or allowing it to be embedded. Save, then reload this page.';
   }
 
+  function timeNow() {
+    return new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  }
+
   function showLive(total) {
     var el = document.getElementById('gc-status');
     if (!el) return;
     el.className = 'status status--ok';
     el.innerHTML =
       '<strong>Live.</strong> Total pageviews across the site: <strong>' + total +
-      '</strong>. GoatCounter caches these figures for up to four hours, so a download you ' +
-      'just made may not appear immediately.';
+      '</strong>. Checked at ' + timeNow() + '; this page re-checks every five minutes. ' +
+      'GoatCounter itself only recalculates these totals every few hours, so a download you ' +
+      'just made can take up to four hours to appear here &mdash; the embedded dashboard ' +
+      'below is closer to real time.';
   }
 
-  function init() {
+  var REFRESH_MS = 5 * 60 * 1000;
+  var busy = false;
+  var lastRun = 0;
+
+  function load() {
+    if (busy) return;
+    busy = true;
+    lastRun = Date.now();
+    var btn = document.getElementById('gc-refresh');
+    if (btn) { btn.disabled = true; btn.textContent = 'Checking\u2026'; }
+
     Promise.all([
       fill('dl-body', DOWNLOADS),
       fill('pv-body', PAGES),
@@ -107,6 +134,27 @@
       }) || res[2] !== null;
       if (gotSomething) showLive(res[2] === null ? '—' : res[2]);
       else showSetupNeeded();
+    }).catch(function () {}).then(function () {
+      // always release, or one bad run would block every later refresh
+      busy = false;
+      if (btn) { btn.disabled = false; btn.textContent = 'Refresh now'; }
+    });
+  }
+
+  function init() {
+    load();
+
+    var btn = document.getElementById('gc-refresh');
+    if (btn) btn.addEventListener('click', load);
+
+    // re-check on a timer, but only while someone is looking at the page
+    setInterval(function () {
+      if (!document.hidden) load();
+    }, REFRESH_MS);
+
+    // and straight away when they come back to a tab left open a while
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden && Date.now() - lastRun > REFRESH_MS) load();
     });
   }
 

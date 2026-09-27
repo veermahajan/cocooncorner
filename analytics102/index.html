@@ -61,6 +61,13 @@
     }
     .stat-table td.is-empty { color: var(--text-soft); font-weight: 400; }
 
+    .refresh-row { margin: -0.4rem 0 1.6rem; }
+    /* buttons don't inherit the page font by default — matters in dyslexia mode */
+    #gc-refresh { font-family: inherit; cursor: pointer; }
+    #gc-refresh:disabled { opacity: 0.6; cursor: progress; }
+    /* the button does nothing without JS */
+    html:not(.js) .refresh-row { display: none; }
+
     .gc-embed-wrap { margin-bottom: 1.2rem; }
     .gc-embed {
       display: block;
@@ -143,7 +150,10 @@
       aggregate counts and holds no keys or passwords.
     </div>
 
-    <p id="gc-status" class="status">Loading figures from GoatCounter&hellip;</p>
+    <p id="gc-status" class="status" aria-live="polite">Loading figures from GoatCounter&hellip;</p>
+    <p class="refresh-row">
+      <button type="button" id="gc-refresh" class="pill-btn outline">Refresh now</button>
+    </p>
 
     <table class="stat-table">
       <caption>Downloads</caption>
