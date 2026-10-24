@@ -464,6 +464,17 @@ footer .foot-small {
   border-bottom: 1px solid var(--line);
 }
 .stat-item { text-align: center; }
+
+/* a logo that doubles as a link: keep the image's own size, give the
+   keyboard focus ring something to wrap, and hint on hover */
+.stat-link {
+  display: inline-block;
+  line-height: 0;
+  border-bottom: 2px solid transparent;
+}
+.stat-link:hover,
+.stat-link:focus-visible { border-bottom-color: var(--accent); }
+.stat-link:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .stat-num {
   font-family: var(--font-heading); font-size: 2rem; font-weight: 700;
   color: var(--text); line-height: 1;
