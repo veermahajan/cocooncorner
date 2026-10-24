@@ -1,0 +1,8 @@
+# www.cocooncorner.org
+User-agent: *
+Allow: /
+# internal analytics page and an unlinked legacy upload folder
+Disallow: /analytics102/
+Disallow: /content/
+
+Sitemap: https://www.cocooncorner.org/sitemap.xml
