@@ -1377,7 +1377,8 @@ html.js .motion-toggle {
 
 /* `.hero > *` later in the file also sets position, so this needs to
    out-specify it to stay pinned in the corner */
-.hero .motion-toggle {
+.hero .motion-toggle,
+.page-hero--video .motion-toggle {
   position: absolute;
   right: 0.9rem;
   bottom: 0.9rem;
@@ -1396,6 +1397,42 @@ html.js .motion-toggle {
 .motion-icon { font-size: 0.8em; }
 
 .hero.motion-paused::before { animation-play-state: paused; }
+
+/* ── video hero (curricula) ──────────────────────────────────────
+   The clip sits behind the heading under the same white wash the home
+   hero uses, a touch stronger: the footage is a white page of dark
+   text, so the wash is what keeps the heading legible wherever the
+   text happens to scroll under it. */
+.page-hero--video {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.page-hero--video .hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+.page-hero--video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 50% 70% at 50% 50%,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(255, 255, 255, 0.92) 55%,
+    rgba(255, 255, 255, 0.78) 100%
+  );
+  z-index: 1;
+}
+.page-hero--video .page-hero-content {
+  position: relative;
+  z-index: 2;
+}
 
 .hero > * { position: relative; z-index: 2; }
 

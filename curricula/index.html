@@ -221,10 +221,23 @@
 <div class="page-wrap">
 
   <!-- ═══════ PAGE HERO ═══════ -->
-  <div class="page-hero page-hero--curricula">
-    <span class="eyebrow">Stanford Neurodiversity Project</span>
-    <h1 class="page-title">Our <span>Curricula</span></h1>
-    <p class="page-subtitle">Week-long lesson plans for classrooms — ready to teach, free to use.</p>
+  <div class="page-hero page-hero--curricula page-hero--video">
+    <!-- Decorative background. Playback is started by site.js so that a
+         reader who asks for reduced motion, has Save-Data on, or paused
+         it last time never sees it move; without JS the poster shows. -->
+    <video class="hero-video" muted loop playsinline preload="metadata"
+           poster="../assets/video/curricula-hero-poster.jpg"
+           aria-hidden="true" tabindex="-1" disablepictureinpicture>
+      <source src="../assets/video/curricula-hero.mp4" type="video/mp4">
+    </video>
+    <div class="page-hero-content">
+      <span class="eyebrow">Stanford Neurodiversity Project</span>
+      <h1 class="page-title">Our <span>Curricula</span></h1>
+      <p class="page-subtitle">Week-long lesson plans for classrooms — ready to teach, free to use.</p>
+    </div>
+    <button type="button" class="motion-toggle" aria-label="Pause background motion">
+      <span class="motion-icon" aria-hidden="true">&#10074;&#10074;</span><span class="motion-text">Pause</span>
+    </button>
   </div>
 
   <section class="content-section">

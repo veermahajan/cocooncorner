@@ -178,12 +178,20 @@
   var MOTION_KEY = 'cc-motion';
 
   function initMotionToggle() {
-    var hero = document.querySelector('.hero');
+    // the home hero animates a CSS background; the curricula hero plays
+    // a muted video — same control, same remembered choice
+    var hero = document.querySelector('.hero, .page-hero--video');
     var btn = document.querySelector('.motion-toggle');
     if (!hero || !btn) return;
 
+    var video = hero.querySelector('video.hero-video');
     var icon = btn.querySelector('.motion-icon');
     var label = btn.querySelector('.motion-text');
+
+    // on a metered connection leave the poster in place rather than
+    // stream footage nobody asked for
+    var saveData = false;
+    try { saveData = !!(navigator.connection && navigator.connection.saveData); } catch (e) {}
 
     function saved() {
       try { return localStorage.getItem(MOTION_KEY); } catch (e) { return null; }
@@ -195,11 +203,19 @@
     } catch (e) {}
 
     var choice = saved();
-    var paused = choice ? choice === 'paused' : prefersReduced;
+    var paused = choice ? choice === 'paused' : (prefersReduced || saveData);
 
     function apply() {
       if (paused) hero.classList.add('motion-paused');
       else hero.classList.remove('motion-paused');
+      if (video) {
+        if (paused) {
+          video.pause();
+        } else {
+          var p = video.play();
+          if (p && p.catch) p.catch(function () {}); // autoplay refused: poster stays
+        }
+      }
       btn.setAttribute('aria-label', paused ? 'Play background motion' : 'Pause background motion');
       if (icon) icon.innerHTML = paused ? '&#9654;' : '&#10074;&#10074;';
       if (label) label.textContent = paused ? 'Play' : 'Pause';
