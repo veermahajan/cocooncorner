@@ -436,6 +436,7 @@ footer .foot-small {
   border: 1px solid var(--line);
   padding: 0.65rem 1.1rem;
   width: fit-content; max-width: 100%;
+  margin-left: auto; margin-right: auto;   /* centred over the title */
 }
 .partner-logo {
   height: 44px; width: auto;
@@ -468,12 +469,17 @@ footer .foot-small {
 /* a logo that doubles as a link: keep the image's own size, give the
    keyboard focus ring something to wrap, and hint on hover */
 .stat-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   line-height: 0;
+  color: var(--text-soft);
   border-bottom: 2px solid transparent;
 }
 .stat-link:hover,
-.stat-link:focus-visible { border-bottom-color: var(--accent); }
+.stat-link:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
+/* "opens elsewhere" arrow; decorative — the link's alt text already says so */
+.stat-link .ext-icon { flex-shrink: 0; }
 .stat-link:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .stat-num {
   font-family: var(--font-heading); font-size: 2rem; font-weight: 700;
