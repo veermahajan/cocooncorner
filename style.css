@@ -1407,6 +1407,17 @@ html.js .motion-toggle {
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  /* taller than the plain heroes so the footage reads as a page of
+     text rather than a sliver; content centred within it */
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+@media (max-width: 760px) {
+  .page-hero--video { min-height: 320px; }
 }
 .page-hero--video .hero-video {
   position: absolute;

@@ -212,6 +212,9 @@
         if (paused) {
           video.pause();
         } else {
+          // data-speed lets the footage run faster than real time
+          var speed = parseFloat(video.getAttribute('data-speed'));
+          if (speed > 0) video.playbackRate = speed;
           var p = video.play();
           if (p && p.catch) p.catch(function () {}); // autoplay refused: poster stays
         }
